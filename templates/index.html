@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <style>
+        *{
+            box-sizing: border-box;margin: 0;padding: 0;
+        }
+        h1{
+            text-align: center;
+            margin-top: 18px;
+        }
+        .texts{
+            margin: 10%;
+            font-size: 18px;
+            width: 80%;
+        }
+        a{
+            text-decoration: none;
+            padding-left:20px ;
+        }
+        form{
+            margin-top: 40px;
+        }
+        #delete{
+            color: red;
+        }
+        #edit{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>To Do List with Python flask</h1>
+    <div class="texts">
+        <ul>
+            {% for todo in todos %}
+                <li>
+                    <span>{{ todo['todo'] }}</span>
+                    <a href="{{ url_for('edit',index=loop.index0) }}" id="edit">Edit</a>
+                    <a href="{{ url_for('delete',index=loop.index0) }}" id="delete">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    <form action="{{ url_for('add') }}" method="POST">
+        <input type="text" name="todo">
+        <button type="submit">Add todo</button>
+    </form>
+    </div>
+</body>
+</html>
